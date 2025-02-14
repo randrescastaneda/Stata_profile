@@ -8,7 +8,7 @@ Creation Date: September 2, 2014
 /*==============================================================================
  0: Program set up 
 ==============================================================================*/
-
+* 
 set matsize 2000
 set more off, permanently 
 set r on, permanently
@@ -19,6 +19,7 @@ set checksum off, permanently
 set tracenumber on, permanently
 set tracedepth 3
 
+* set trace on 
 
 * defining quick keys ie.
 
@@ -33,8 +34,9 @@ global F4 `"disp _dup(20) "-" "End of section" _dup(20) "-" _n(200) _dup(20) "-"
 global F5 `"cd "c:\Users\wb384996\OneDrive - WBG\temp\stata";"'
 global F6 `"cd "p:/02.personal\wb384996\temporal\stata";"' 
 global F9 `"BREAK;"'
+global F8 `"frame change default;"'
 
-global google_api "AIzaSyAPOEHo7WTW98ETzJjbPMRMrK7UvZ1i_mY"
+global google_api "AIzaSyAoZxkrCxvpdhdukbaSPB27ljitNCl7j3Y"
 
 global Rterm_path    `"c:\Program Files\R\R-3.4.0\bin\x64\Rterm.exe"'
 global Rterm_options `"--vanilla"'
@@ -45,19 +47,36 @@ global Rterm_options `"--vanilla"'
 * winexec "C:\Program Files\Microsoft Office 15\root\office15\OUTLOOK.EXE"
 * sleep 5000
 
-winexec "C:\Users\wb384996\Documents\Totalcmd\TOTALCMD64.EXE"
+* winexec "C:\Users\wb384996\Documents\Totalcmd\TOTALCMD64.EXE"
+winexec "C:\Program Files (x86)\Totalcmd\TOTALCMD64.EXE"
 sleep 5000
 
-winexec "C:\Program Files (x86)\Notepad++\notepad++.exe"
+winexec "C:\Program Files\Notepad++\notepad++.exe"
 *winexec "C:\Program Files\Sublime Text 3\sublime_text.exe"
 sleep 3000
 
 *winexec "C:\Program Files\Sublime Merge\sublime_merge.exe"
 global MYEDITOR winexec notepad++
 
+global mf_am19 = 20191119221122
+
+// ******** povcalnet 
+global pcn_svr_ar = "http://wbgmsrech001/PovcalNet-AR/api"
+global pcn_svr_ts = "http://wbgmsrech001/PovcalNet-testing"
+global pcn_svr_in = "http://wbgmsrech001/PovcalNet"
+
+
+// ******** pip
+global pip_svr_qa = "https://apiv2qa.worldbank.org" // QA
+global pip_svr_ts = "" // testing
+global pip_svr_ar = "" 
+global pip_svr_pr = "https://api.worldbank.org" // Production
+
+
+
 * winexec "c:\Users\wb384996\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Axosoft, LLC\GitKraken.lnk"
 
-
+/* 
 cap cd "p:/02.personal\wb384996\temporal\stata"
 if (_rc) {
 	disp in g "you're not connect to the intranet." _n ///
@@ -65,53 +84,17 @@ if (_rc) {
 		in y "c:\Users\wb384996\OneDrive - WBG\temp\stata\"
 	cd "c:\Users\wb384996\OneDrive - WBG\temp\stata\"
 }
+ */
 
+qui adodir ++
 
-local adodir1 "c:\Users\wb384996\OneDrive - WBG\GTSD\02.core_team\01.programs\01.ado"
-local adodir2 "c:\Users\wb384996\OneDrive - WBG\ado\github_contr"
-local adodir3 "c:\Users\wb384996\OneDrive - WBG\ado\myados"
-local adodir4 "c:\Users\wb384996\OneDrive - WBG\ado\My_R_Packages"
+*/
 
-local i = 1 
-while ("`adodir`i''" != "") {
-	local adodirs  `"`adodirs' "`adodir`i''" "' 
-	local ++i
-}
+exit
 
-foreach adodir of local adodirs {
-	
-	local dirs: dir "`adodir'" dir "*"
-	
-	gettoken dir dirs : dirs
-	while ("`dir'" != "")  {
-		local files ""
-		if regexm("`dir'", "^\.git|^_") {
-			gettoken dir dirs : dirs
-			continue
-		}
-		
-		local ados: dir "`adodir'/`dir'" files "*.ado"
-		local help: dir "`adodir'/`dir'" files "*.sthlp"
-		local files = `"`ados'`help'"'
-		
-		if (`"`files'"' != "") {
-			qui adopath ++ "`adodir'/`dir'"
-			disp "`adodir'/`dir'"
-		}
-		
-		local subdirs: dir "`adodir'/`dir'" dir "*"
-		
-		if (`"`subdirs'"' != "") {
-			foreach subdir of local subdirs {
-				if regexm("`subdir'", "^\.git|^_") continue
-				local dirs "`dirs' `dir'/`subdir'"
-			}		
-		}
-		gettoken dir dirs : dirs
-	}
-}
+><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 
-/* 
+/*
 if date("`c(current_date)'", "DMY") < date("30 Mar 2017", "DMY") {
 	 run "Z:\public\LAC\MPO\MPO spring 2017 LAC\_do-files\MPO_LAC_charts.do" 
 }
@@ -134,7 +117,6 @@ backup, source("C:\ado") destination("E:\destination") ///
 * shell ROBOCOPY "Z:\Mexico HOI" "C:\Users\wb384996\Box Sync\Mexico CEQ" /e /XO /XX /MT:100
 
 
-exit
 /* End of do-file */
 
 /*
@@ -160,8 +142,6 @@ exit
 */
 
 * global F8 `"global rootdatalib "\\lcrms02\DatalibPub\Datalib";"'
-
-><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><
 
 http://www.asciitable.com/
 
