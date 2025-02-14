@@ -36,8 +36,6 @@ global F6 `"cd "p:/02.personal\wb384996\temporal\stata";"'
 global F9 `"BREAK;"'
 global F8 `"frame change default;"'
 
-global google_api "AIzaSyAoZxkrCxvpdhdukbaSPB27ljitNCl7j3Y"
-
 global Rterm_path    `"c:\Program Files\R\R-3.4.0\bin\x64\Rterm.exe"'
 global Rterm_options `"--vanilla"'
 
@@ -57,8 +55,6 @@ sleep 3000
 
 *winexec "C:\Program Files\Sublime Merge\sublime_merge.exe"
 global MYEDITOR winexec notepad++
-
-global mf_am19 = 20191119221122
 
 // ******** povcalnet 
 global pcn_svr_ar = "http://wbgmsrech001/PovcalNet-AR/api"
