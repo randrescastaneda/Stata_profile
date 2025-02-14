@@ -173,8 +173,3 @@ net install brewscheme, from("http://wbuchanan.github.io/brewscheme") replace
 
 set scheme burd, perm
 
-acasta
-6n48rhk
-
-
-
